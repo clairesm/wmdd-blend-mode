@@ -1,0 +1,250 @@
+:root {
+    --boxpad: 20px;
+    --bmode: multiply; /* blendmode */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: black;
+}
+
+header {
+    background-color: #000;
+    color: #ffff;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 2%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 104;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+main {
+    display: flex;
+    width: calc(100vw + 300px);
+    margin-left: -300px;
+    transition: all .5s;
+    /* background-color: orange; */
+}
+
+.menu-open main {
+    width: 100vw;
+    margin-left: 0;
+}
+
+.pictures {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+    /* min-height: 100vh; */
+    width: 100%;
+    /* grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    grid-template-areas: 
+        'box1 box2 box2 box3'
+        'box4 box2 box2 box5'
+        ; */
+    
+}
+
+.picture {
+    position: relative;
+    overflow: hidden;
+    /* padding: var(--boxpad); */
+}
+
+/* .box1 {
+    grid-area: box1;
+}
+
+.box2 {
+    grid-area: box2;
+}
+
+.box3 {
+    grid-area: box3;
+}
+.box4 {
+    grid-area: box4;
+}
+
+.box5 {
+    grid-area: box5;
+}
+
+.box6 {
+    grid-area: box6;
+}
+
+.box7 {
+    grid-area: box7;
+}
+
+.box8 {
+    grid-area: box8;
+}
+
+.box9 {
+    grid-area: box9;
+}
+
+.box10 {
+    grid-area: box10;
+}
+
+.box11 {
+    grid-area: box11;
+}
+
+.box12 {
+    grid-area: box12;
+} */
+
+.picture img {
+    mix-blend-mode: var(--bmode);
+}
+
+.picture .message {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    text-align: center;
+
+    transform: translateY(100%); /*from hidden*/
+    transition: transform .5s ease-in-out;
+}
+
+/* to reveal message on click trigger */
+.message-up .message {
+    transform: translateY(0); /*to show*/
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* FORM STYLINGS ============ */
+.color-mode {
+    color: white;
+    background-color: black;
+    text-transform: uppercase;
+
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+
+    /* this is related to .menu-open .color-mode */
+    transform: translateX(-100%);
+    z-index: 50;
+
+    /* position: absolute; 
+    transition: transform .5s;
+    left: 0;
+   right: 0;   */
+   /* this positioned the blend mode tester back to full width. ABSOLUTE - relative is on the body */
+
+   flex: 0 0 300px;
+}
+
+/* js to open menu on-click ========== */
+.menu-open .color-mode {
+    transform: translateX(0);
+}
+
+.input-label-container,
+.color-picker-container {
+    border: 2px solid white;
+    padding: 0 2%;
+    display: grid;
+}
+
+.color-picker-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom-width: 4px;
+    padding: .5rem 2%;
+    background-color: hsl(240, 30%, 30%);
+    grid-column: 1/-1;
+
+}
+
+label {
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* to create your own button ========= */
+label span {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin: 5px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background-color: hsl(240, 20%, 40%);
+    justify-self: end;    
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+/* related to animation @keyframes pulse */
+label:hover span {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* when input is checked, select label span too  */
+input:checked + label span {
+    background-color: orange;
+}
+
+
+/* to hide the default radio button ========== */
+input[type="radio"],
+.visually-hidden {
+clip: rect(0 0 0 0);
+clip-path: inset(50%);
+height: 1px;
+overflow: hidden;
+position: absolute;
+white-space: nowrap;
+width: 1px;
+}
+
+/* animation for buttons ================== */
+@keyframes pulse {
+    /* 25% {
+        background-color: hotpink;
+    } */
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    /* 75% {
+        background-color: slateblue;
+    } */
+}
